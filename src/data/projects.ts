@@ -31,12 +31,7 @@ export const projects: Project[] = [
     name: 'NovaSpeed',
     meta: 'Hardware · founder · in development',
     description:
-      'A laser-based precision speed-measurement device for athletes and coaches. Sole founder; running product, hardware, firmware, and go-to-market.',
-    image: {
-      src: '/projects/novaspeed.png',
-      alt: 'NovaSpeed brand mark',
-      kind: 'logo',
-    },
+      'A laser-based hardware system that captures continuous velocity and position data for sprinting, jumping, and acceleration testing. The tripod-mounted unit samples at up to 1,000 Hz and streams to a companion web and iOS app, producing velocity curves, split times, acceleration profiles, and force–velocity analysis — the kind of measurement previously confined to elite biomechanics labs. Sole founder; running product, hardware, firmware, and go-to-market.',
     links: [{ href: 'https://getnovaspeed.com', label: 'getnovaspeed.com' }],
   },
   {

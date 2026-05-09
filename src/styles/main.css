@@ -313,9 +313,17 @@ main { padding-bottom: 3rem; }
   grid-template-columns: 220px 1fr;
 }
 
-/* stacked layout for wide marketing composites — image full-width above body */
+/* stacked layout for wide marketing composites — text on top, image below */
 .project-card.has-wide {
   grid-template-columns: 1fr;
+}
+
+.project-card.has-wide .project-figure {
+  order: 2;
+}
+
+.project-card.has-wide .project-body {
+  order: 1;
 }
 
 .project-card:last-of-type {
@@ -354,9 +362,10 @@ main { padding-bottom: 3rem; }
 }
 
 .project-figure.is-wide {
-  /* full-width hero composite */
+  /* App Store marketing composite — sized down, not full-width */
   background: transparent;
   border: 1px solid var(--rule);
+  max-width: 460px;
 }
 
 .project-figure.is-wide img {
