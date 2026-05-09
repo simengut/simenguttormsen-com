@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deploy simenguttormsen.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --fg:#1c1c1f; --muted:#5a5a64; --accent:#0a5b8a; --warn:#b54708; --good:#06743a;
+  --rule:#e4e4ea; --bg:#fafafa; --card:#fff; --code-bg:#f1f1f4;
+}
+html { background: var(--bg); }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color:var(--fg); max-width:780px; margin:2.5rem auto; padding:0 1.25rem 4rem;
+  line-height:1.55; font-size:16.5px;
+}
+h1 { font-size:1.85rem; margin:0 0 .25rem; letter-spacing:-.01em; }
+h2 { font-size:1.2rem; margin:2rem 0 .6rem; padding-bottom:.25rem; border-bottom:1px solid var(--rule); }
+h3 { font-size:1rem; margin:1.4rem 0 .35rem; color:var(--accent); }
+.subtitle { color:var(--muted); margin-top:0; }
+ul, ol { padding-left:1.4rem; }
+li { margin:.3rem 0; }
+code, kbd { font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+            font-size:.92em; background:var(--code-bg); padding:.08em .35em; border-radius:4px; }
+pre { background:var(--code-bg); border:1px solid var(--rule); border-radius:6px;
+      padding:.8rem 1rem; overflow-x:auto; font-size:.9em; line-height:1.45; }
+pre code { background:none; padding:0; }
+.box { background:var(--card); border:1px solid var(--rule); border-radius:8px; padding:1rem 1.25rem; margin:1rem 0; }
+.box.warn { background:#fff7ed; border-color:#fed7aa; }
+.box.warn h2, .box.warn h3 { color:var(--warn); border-color:#fed7aa; }
+.box.good { background:#ecfdf3; border-color:#a7f3d0; }
+.box.good h2, .box.good h3 { color:var(--good); border-color:#a7f3d0; }
+table { border-collapse:collapse; width:100%; margin:.6rem 0; font-size:.95em; }
+th, td { text-align:left; padding:.5rem .65rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+th { background:#f6f6f9; font-weight:600; }
+tr:last-child td { border-bottom:none; }
+.pill { display:inline-block; font-size:.78em; padding:.1em .55em;
+        background:#eef4f9; color:var(--accent); border-radius:999px; margin-right:.25em; }
+hr { border:none; border-top:1px solid var(--rule); margin:2rem 0; }
+.small { font-size:.9em; color:var(--muted); }
+strong { color:var(--fg); }
+.copy {
+  display:flex; align-items:center; gap:.5rem;
+  background:var(--code-bg); border:1px solid var(--rule); border-radius:6px;
+  padding:.45rem .6rem; font-family:ui-monospace,monospace; font-size:.9rem;
+}
+</style>
+</head>
+<body>
+
+<h1>Deploying simenguttormsen.com</h1>
+<p class="subtitle">Two paths: GitHub Pages (simpler) or Cloudflare Pages (faster CDN). Pick one. Don't mix.</p>
+
+<div class="box good">
+<h2 style="margin-top:0;border:none">Recommended: GitHub Pages</h2>
+<p>Free. Zero config. Auto-renewed Let's Encrypt SSL. You keep DNS at GoDaddy. Total time: ~15&nbsp;min + DNS propagation (~1&ndash;24&nbsp;h).</p>
+</div>
+
+<h2>Step 1 &mdash; Create the GitHub repo</h2>
+
+<p>You can either let me run it (you have <code>gh</code> authed as <code>simengut</code>), or do it yourself in the GitHub web UI.</p>
+
+<h3>Option A &mdash; with the gh CLI</h3>
+<pre><code>cd "/Users/simenguttormsen/Library/CloudStorage/Dropbox/SimenPhD/website"
+gh repo create simengut/simenguttormsen-com --public --source=. --remote=origin --push</code></pre>
+
+<h3>Option B &mdash; in the browser</h3>
+<ol>
+  <li>Go to <a href="https://github.com/new">github.com/new</a></li>
+  <li>Repository name: <code>simenguttormsen-com</code> (or any name you like)</li>
+  <li>Visibility: <strong>Public</strong> (required for free Pages)</li>
+  <li>Do <strong>not</strong> add README/license/.gitignore &mdash; the local repo already has them</li>
+  <li>Create the repo, then push from terminal:
+    <pre><code>cd "/Users/simenguttormsen/Library/CloudStorage/Dropbox/SimenPhD/website"
+git remote add origin git@github.com:simengut/simenguttormsen-com.git
+git branch -M main
+git push -u origin main</code></pre>
+  </li>
+</ol>
+
+<h2>Step 2 &mdash; Enable GitHub Pages</h2>
+<ol>
+  <li>In the repo on github.com: <strong>Settings</strong> &rarr; <strong>Pages</strong></li>
+  <li>Source: <em>Deploy from a branch</em></li>
+  <li>Branch: <code>main</code> &mdash; folder: <code>/ (root)</code> &mdash; save</li>
+  <li>Within ~30 seconds the site goes live at <code>https://simengut.github.io/simenguttormsen-com/</code></li>
+  <li>In the same Pages settings, set <strong>Custom domain</strong> to <code>simenguttormsen.com</code> and save. (The <code>CNAME</code> file is already in your repo.)</li>
+  <li>Tick <strong>Enforce HTTPS</strong> once available (~5&ndash;10&nbsp;min after DNS resolves).</li>
+</ol>
+
+<h2>Step 3 &mdash; Configure DNS in GoDaddy</h2>
+<p>Log into GoDaddy &rarr; <strong>My Products</strong> &rarr; <em>simenguttormsen.com</em> &rarr; <strong>DNS</strong>. Delete the default <code>parked</code> A record, then add these:</p>
+
+<table>
+  <thead><tr><th>Type</th><th>Host / Name</th><th>Points to / Value</th><th>TTL</th></tr></thead>
+  <tbody>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.108.153</code></td><td>600</td></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.109.153</code></td><td>600</td></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.110.153</code></td><td>600</td></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.111.153</code></td><td>600</td></tr>
+    <tr><td>CNAME</td><td><code>www</code></td><td><code>simengut.github.io.</code></td><td>3600</td></tr>
+  </tbody>
+</table>
+
+<p class="small">The four A records are GitHub Pages' published anycast IPs. The CNAME on <code>www</code> sends visitors typing <code>www.simenguttormsen.com</code> to the same place. The trailing dot on the CNAME value is correct &mdash; GoDaddy may strip or add it automatically.</p>
+
+<div class="box warn">
+<strong>Watch out:</strong> GoDaddy's DNS panel often has a default <code>CNAME www &rarr; @</code> record. Delete or replace it with the one above. Otherwise you'll get a redirect loop.
+</div>
+
+<h2>Step 4 &mdash; Wait, verify, push live</h2>
+<ul>
+  <li>DNS typically resolves in 1&ndash;6 hours; can take up to 24&ndash;48 in rare cases.</li>
+  <li>Check progress: <code>dig simenguttormsen.com +short</code> &mdash; you should see the four <code>185.199.10x.153</code> IPs.</li>
+  <li>Once GitHub shows the green &ldquo;DNS check successful&rdquo; in the Pages settings, tick <strong>Enforce HTTPS</strong>.</li>
+  <li>Visit <a href="https://simenguttormsen.com">simenguttormsen.com</a>.</li>
+</ul>
+
+<hr>
+
+<h2>Alternative: Cloudflare Pages</h2>
+<p>Free, faster CDN, automatic deploys on git push, and you get Cloudflare's free SSL/DDoS protection. Trade-off: you have to <em>transfer DNS</em> (not the domain itself) from GoDaddy to Cloudflare. Worth it long-term for the speed and the cheaper renewal next year.</p>
+
+<ol>
+  <li>Sign up at <a href="https://dash.cloudflare.com/">dash.cloudflare.com</a></li>
+  <li><strong>Websites</strong> &rarr; <strong>Add a site</strong> &rarr; enter <code>simenguttormsen.com</code> &rarr; choose Free plan</li>
+  <li>Cloudflare scans your existing GoDaddy DNS, then gives you two nameservers (looks like <code>arnold.ns.cloudflare.com</code> + <code>jane.ns.cloudflare.com</code>)</li>
+  <li>In GoDaddy: <em>simenguttormsen.com</em> &rarr; <strong>Nameservers</strong> &rarr; <em>Change</em> &rarr; <em>Enter my own nameservers</em> &rarr; paste the two from Cloudflare</li>
+  <li>Wait for Cloudflare to confirm activation (usually &lt;1&nbsp;hour)</li>
+  <li>In Cloudflare: <strong>Workers &amp; Pages</strong> &rarr; <strong>Create application</strong> &rarr; <strong>Pages</strong> &rarr; <strong>Connect to Git</strong> &rarr; pick the GitHub repo &rarr; build command empty, output dir <code>/</code></li>
+  <li>After first deploy, in the Pages project: <strong>Custom domains</strong> &rarr; add <code>simenguttormsen.com</code> &rarr; Cloudflare auto-creates the records</li>
+</ol>
+
+<p class="small">When the domain comes up for renewal next year, you can transfer registration to Cloudflare for ~$10.44/yr (no markup) instead of GoDaddy's $22.99.</p>
+
+<hr>
+
+<h2>If anything breaks</h2>
+<ul>
+  <li><strong>404 after DNS resolves:</strong> Pages probably hasn't finished its first build. Wait 5 minutes; Settings &rarr; Pages will show a green check when ready.</li>
+  <li><strong>"Improperly configured custom domain"</strong> in GitHub Pages: typically means the <code>CNAME</code> file in the repo doesn't match the custom domain. Check the file at the root of the repo contains exactly <code>simenguttormsen.com</code> on a single line.</li>
+  <li><strong>SSL error after DNS resolves:</strong> Let's Encrypt provisioning takes ~5&ndash;15 minutes after DNS is verified. Don't enforce HTTPS until the lock icon appears.</li>
+  <li><strong>www subdomain doesn't redirect:</strong> Double-check the <code>CNAME www &rarr; simengut.github.io.</code> record at GoDaddy.</li>
+</ul>
+
+</body>
+</html>
