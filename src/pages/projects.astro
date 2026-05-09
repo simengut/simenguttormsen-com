@@ -12,20 +12,27 @@ import { projects } from '../data/projects';
 
 <section class="container content-section">
   {projects.map((project) => (
-    <article class="project">
-      <h3>{project.name}</h3>
-      <p class="paper-meta">{project.meta}</p>
-      <p>{project.description}</p>
-      {project.links && project.links.length > 0 && (
-        <p class="paper-links">
-          {project.links.map((link, i) => (
-            <>
-              {i > 0 && <span class="sep">&middot;</span>}
-              <a href={link.href} rel="noopener">{link.label}</a>
-            </>
-          ))}
-        </p>
+    <article class="project-card">
+      {project.image && (
+        <figure class:list={['project-figure', `is-${project.image.kind}`]}>
+          <img src={project.image.src} alt={project.image.alt} loading="lazy">
+        </figure>
       )}
+      <div class="project-body">
+        <h3>{project.name}</h3>
+        <p class="paper-meta">{project.meta}</p>
+        <p>{project.description}</p>
+        {project.links && project.links.length > 0 && (
+          <p class="paper-links">
+            {project.links.map((link, i) => (
+              <>
+                {i > 0 && <span class="sep">&middot;</span>}
+                <a href={link.href} rel="noopener">{link.label}</a>
+              </>
+            ))}
+          </p>
+        )}
+      </div>
     </article>
   ))}
 </section>
