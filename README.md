@@ -1,59 +1,78 @@
-# simenguttormsen.com — source
+# simenguttormsen.com
 
-Single-page personal site. Plain HTML + CSS, no build step, no JS.
+Personal site. Astro + TypeScript, statically rendered, deployed via GitHub Actions to GitHub Pages.
 
-## Files
+## Stack
+
+- **Astro** — `.astro` files compile to plain HTML; zero JS at runtime
+- **TypeScript** — content lives in typed data files (`src/data/`)
+- **Plain CSS** — single `src/styles/main.css`, system fonts
+
+## Project layout
 
 ```
-index.html
-styles.css
-papers/        # drop your paper PDFs here (wshape-iv.pdf, iv-spillover.pdf)
-cv/            # drop the CV PDF here (Simen_Guttormsen_CV.pdf)
-assets/        # put a headshot here when you're ready, then update index.html
+.
+├── astro.config.mjs
+├── tsconfig.json
+├── package.json
+├── src/
+│   ├── layouts/
+│   │   └── Site.astro          # shared shell: <head>, header, footer
+│   ├── pages/
+│   │   ├── index.astro         # /
+│   │   ├── research.astro      # /research
+│   │   └── career.astro        # /career
+│   ├── data/
+│   │   ├── site.ts             # name, email, social links, nav config
+│   │   ├── papers.ts           # typed Paper[] — abstracts, status, links
+│   │   └── projects.ts         # typed Project[] — VAULT, NovaSpeed, PlateMates
+│   └── styles/
+│       └── main.css
+├── public/                     # copied as-is to build root
+│   ├── CNAME                   # GitHub Pages custom domain
+│   ├── assets/headshot.png
+│   ├── papers/                 # paper PDFs
+│   └── cv/                     # CV PDF
+└── .github/workflows/deploy.yml  # CI: build + deploy on push to main
 ```
 
-## Local preview
+## Develop
 
 ```bash
-cd website
-python3 -m http.server 8000
-# open http://localhost:8000
+npm install
+npm run dev          # http://localhost:4321 with hot reload
 ```
 
-## To-do before launch
+## Build
 
-- [ ] Add `assets/headshot.jpg` (or .webp), then replace the `<div class="photo-placeholder">` in `index.html` with `<img src="assets/headshot.jpg" alt="Simen Guttormsen">`.
-- [ ] Drop `papers/wshape-iv.pdf` (the Quantitative Finance submission).
-- [ ] Drop `papers/iv-spillover.pdf` (the JFM submission).
-- [ ] Drop `cv/Simen_Guttormsen_CV.pdf`.
-- [ ] Upload both papers to SSRN, then replace the `https://www.ssrn.com/` placeholder URLs in `index.html` with the real SSRN links and remove the `(forthcoming)` notes.
-- [ ] If the brother attribution in the VAULT paragraph isn't accurate, edit the About line in `index.html`.
+```bash
+npm run build        # outputs to ./dist
+npm run preview      # serve the production build
+```
+
+## Add a paper
+
+Edit `src/data/papers.ts` — append an object to the `papers` array. Optional fields auto-resolve in the template.
+
+```ts
+{
+  title: '...',
+  authorship: 'Sole author',
+  status: 'Under review at <em>Journal Name</em>, 2026',
+  abstract: '...',
+  pdf: '/papers/filename.pdf',     // drop the file in public/papers/
+  ssrn: 'https://...',             // optional
+}
+```
+
+## Add a project
+
+Edit `src/data/projects.ts` — same idea.
 
 ## Deploy
 
-Cheapest path:
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which runs `npm ci && npm run build` and publishes the `dist/` directory to GitHub Pages. Make sure the repo's Settings → Pages source is set to **GitHub Actions**.
 
-1. `git init && git add . && git commit -m "Initial site"`
-2. Push to GitHub (`gh repo create simengut/simenguttormsen.com --public --source . --push`)
-3. In Cloudflare Pages: Connect → simengut/simenguttormsen.com → Build command: *(none)* → Output directory: `/`.
-4. Add custom domain `simenguttormsen.com` in Cloudflare Pages settings.
-5. Update DNS (or transfer the domain to Cloudflare for at-cost renewal).
+## Adding a blog (later)
 
-GitHub Pages works equally well — pick whichever you prefer.
-
-## Editing later
-
-Plain HTML by design — no framework lock-in. Add a paper:
-
-```html
-<article class="paper">
-  <h3>Title of paper</h3>
-  <p class="paper-meta">Status. Year.</p>
-  <p class="paper-abstract">Abstract...</p>
-  <p class="paper-links">
-    <a href="papers/file.pdf">PDF</a>
-    <span class="sep">·</span>
-    <a href="https://ssrn.com/...">SSRN</a>
-  </p>
-</article>
-```
+When you're ready, install `@astrojs/mdx`, create `src/content/posts/`, define a content collection in `src/content/config.ts`, and add `src/pages/posts/[...slug].astro` + `src/pages/posts/index.astro`. About an hour of work.

@@ -1,0 +1,68 @@
+---
+import Site from '../layouts/Site.astro';
+import { site } from '../data/site';
+---
+<Site page="home">
+
+<section class="hero container">
+  <div class="hero-grid">
+    <figure class="avatar">
+      <img src="/assets/headshot.png" alt={site.name} width="360" height="360">
+    </figure>
+    <div class="hero-text">
+      <h1>{site.name}</h1>
+      <p class="role">{site.role}</p>
+      <ul class="hero-links" aria-label="Contact links">
+        <li><a href={`mailto:${site.email}`}>Email</a></li>
+        <li><a href={site.links.linkedin} rel="noopener">LinkedIn</a></li>
+        <li><a href={site.links.github} rel="noopener">GitHub</a></li>
+        <li><a href={site.links.scholar} rel="noopener">Google Scholar</a></li>
+        <li><a href={site.links.cv}>CV</a></li>
+      </ul>
+      <p class="bio">
+        I work on implied-volatility surfaces, market microstructure, and how investors learn about event risk.
+        Previously at Princeton (Operations Research &amp; Financial Engineering, 2023) and Duke
+        (Economics &amp; Computation, 2025). Outside research I compete in the pole vault for Norway:
+        15th at the Paris 2024 Olympics, and finalist at the 2026 World Indoor Championships.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="container content-section">
+  <h2>Currently</h2>
+  <ul class="now-list">
+    <li>
+      <span class="now-tag">Research</span>
+      <span>
+        Three papers under review &mdash; <em>Quantitative Finance</em>,
+        <em>Journal of Financial Markets</em>, and <em>International Journal of Finance &amp; Economics</em>.
+        <a href="/research">See research &rarr;</a>
+      </span>
+    </li>
+    <li>
+      <span class="now-tag">Teaching</span>
+      <span>Advising three Master&rsquo;s students at NMBU on quantitative-finance theses.</span>
+    </li>
+    <li>
+      <span class="now-tag">Sport</span>
+      <span>Training toward the 2026 outdoor season.</span>
+    </li>
+    <li>
+      <span class="now-tag">Building</span>
+      <span>
+        <a href="https://getnovaspeed.com" rel="noopener">NovaSpeed</a> &mdash;
+        precision laser speed-measurement hardware for athletes (in development).
+      </span>
+    </li>
+    <li>
+      <span class="now-tag">Shipped</span>
+      <span>
+        <a href="https://stavhopp.no/vault/" rel="noopener">VAULT</a> (1,000+ downloads) and
+        <a href="/research#apps">PlateMates</a> on the App Store.
+      </span>
+    </li>
+  </ul>
+</section>
+
+</Site>
