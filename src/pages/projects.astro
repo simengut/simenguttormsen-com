@@ -1,0 +1,33 @@
+---
+import Site from '../layouts/Site.astro';
+import { projects } from '../data/projects';
+---
+<Site title="Projects" page="projects"
+  description="Software and hardware projects by Simen Guttormsen — NovaSpeed, PlateMates, VAULT.">
+
+<section class="page-header container">
+  <h1>Projects</h1>
+  <p class="lede">Software and hardware I&rsquo;ve built &mdash; shipped apps and an in-development hardware product.</p>
+</section>
+
+<section class="container content-section">
+  {projects.map((project) => (
+    <article class="project">
+      <h3>{project.name}</h3>
+      <p class="paper-meta">{project.meta}</p>
+      <p>{project.description}</p>
+      {project.links && project.links.length > 0 && (
+        <p class="paper-links">
+          {project.links.map((link, i) => (
+            <>
+              {i > 0 && <span class="sep">&middot;</span>}
+              <a href={link.href} rel="noopener">{link.label}</a>
+            </>
+          ))}
+        </p>
+      )}
+    </article>
+  ))}
+</section>
+
+</Site>

@@ -13,11 +13,12 @@ export const site = {
   },
 } as const;
 
-export type SitePage = 'home' | 'research' | 'career';
+export type SitePage = 'home' | 'research' | 'projects' | 'career';
 
 export const navItems: { href: string; label: string; page: SitePage | 'contact' }[] = [
   { href: '/', label: 'Home', page: 'home' },
   { href: '/research', label: 'Research', page: 'research' },
+  { href: '/projects', label: 'Projects', page: 'projects' },
   { href: '/career', label: 'Career', page: 'career' },
   { href: 'mailto:simen.guttormsen@nmbu.no', label: 'Contact', page: 'contact' },
 ];

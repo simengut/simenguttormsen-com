@@ -1,7 +1,6 @@
 ---
 import Site from '../layouts/Site.astro';
 import { papers } from '../data/papers';
-import { projects } from '../data/projects';
 ---
 <Site title="Research" page="research"
   description="Research papers and projects by Simen Guttormsen — implied volatility, volatility spillovers, event risk.">
@@ -26,23 +25,6 @@ import { projects } from '../data/projects';
         {paper.pdf && paper.ssrn && <span class="sep">&middot;</span>}
         {paper.ssrn && <a href={paper.ssrn} rel="noopener">SSRN</a>}
       </p>
-    </article>
-  ))}
-</section>
-
-<section id="apps" class="container content-section">
-  <h2>Apps &amp; projects</h2>
-
-  {projects.map((project) => (
-    <article class="project">
-      <h3>{project.name}</h3>
-      <p class="paper-meta">{project.meta}</p>
-      <p>{project.description}</p>
-      {project.link && (
-        <p class="paper-links">
-          <a href={project.link.href} rel="noopener">{project.link.label}</a>
-        </p>
-      )}
     </article>
   ))}
 </section>
