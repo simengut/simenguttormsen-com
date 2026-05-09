@@ -300,12 +300,22 @@ main { padding-bottom: 3rem; }
 
 .project-card {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2rem;
+  gap: 1.4rem 2rem;
   align-items: start;
-  padding: 0 0 2rem;
-  margin-bottom: 2rem;
+  padding: 0 0 2.4rem;
+  margin-bottom: 2.4rem;
   border-bottom: 1px solid var(--rule);
+}
+
+/* side-column layout for portrait screenshots and square logos */
+.project-card.has-screenshot,
+.project-card.has-logo {
+  grid-template-columns: 220px 1fr;
+}
+
+/* stacked layout for wide marketing composites — image full-width above body */
+.project-card.has-wide {
+  grid-template-columns: 1fr;
 }
 
 .project-card:last-of-type {
@@ -328,10 +338,6 @@ main { padding-bottom: 3rem; }
   height: auto;
 }
 
-.project-figure.is-screenshot {
-  /* phone screenshots: tall portrait — let natural ratio show */
-}
-
 .project-figure.is-logo {
   aspect-ratio: 1 / 1;
   display: flex;
@@ -345,6 +351,17 @@ main { padding-bottom: 3rem; }
   width: 80%;
   height: auto;
   object-fit: contain;
+}
+
+.project-figure.is-wide {
+  /* full-width hero composite */
+  background: transparent;
+  border: 1px solid var(--rule);
+}
+
+.project-figure.is-wide img {
+  width: 100%;
+  height: auto;
 }
 
 .project-body h3 {
@@ -659,12 +676,14 @@ main { padding-bottom: 3rem; }
 
   .page-header h1 { font-size: 1.7rem; }
 
-  .project-card {
+  .project-card.has-screenshot,
+  .project-card.has-logo {
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
 
-  .project-figure {
+  .project-card.has-screenshot .project-figure,
+  .project-card.has-logo .project-figure {
     max-width: 320px;
   }
 

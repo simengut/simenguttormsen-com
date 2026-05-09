@@ -6,8 +6,12 @@ export interface ProjectLink {
 export interface ProjectImage {
   src: string;
   alt: string;
-  /** 'screenshot' fills the frame; 'logo' is centered on a soft background */
-  kind: 'screenshot' | 'logo';
+  /**
+   * 'screenshot' = portrait phone screenshot, side column
+   * 'logo' = centered icon on soft background
+   * 'wide' = full-card-width hero (App Store marketing composite, etc.)
+   */
+  kind: 'screenshot' | 'logo' | 'wide';
 }
 
 export interface Project {
@@ -41,9 +45,9 @@ export const projects: Project[] = [
     description:
       'A meal-planning app for mixed-diet couples and households — one shared base recipe with diet-specific add-ons, so a vegan and an omnivore can share a meal, shop from a single grocery list, and skip cooking twice.',
     image: {
-      src: '/projects/platemates.png',
-      alt: 'PlateMates iOS app — home screen',
-      kind: 'screenshot',
+      src: '/projects/platemates.jpg',
+      alt: 'PlateMates — App Store marketing screens',
+      kind: 'wide',
     },
     links: [
       {
@@ -58,9 +62,9 @@ export const projects: Project[] = [
     description:
       'An iOS app supporting the training, technique notation, and competition workflow used in elite pole vault. Used by athletes and coaches across the international pole-vault community.',
     image: {
-      src: '/projects/vault.png',
-      alt: 'VAULT iOS app — session and jump history',
-      kind: 'screenshot',
+      src: '/projects/vault.jpg',
+      alt: 'VAULT — App Store marketing screens',
+      kind: 'wide',
     },
     links: [
       {

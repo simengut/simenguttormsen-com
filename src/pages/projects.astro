@@ -12,7 +12,7 @@ import { projects } from '../data/projects';
 
 <section class="container content-section">
   {projects.map((project) => (
-    <article class="project-card">
+    <article class:list={['project-card', project.image && `has-${project.image.kind}`]}>
       {project.image && (
         <figure class:list={['project-figure', `is-${project.image.kind}`]}>
           <img src={project.image.src} alt={project.image.alt} loading="lazy">
