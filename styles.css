@@ -99,6 +99,11 @@ main { padding-bottom: 3rem; }
   color: var(--text);
 }
 
+.site-nav a.active {
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* ---------- hero ---------- */
 
 .hero {
@@ -278,6 +283,177 @@ main { padding-bottom: 3rem; }
   margin: 0 .25rem;
 }
 
+/* ---------- "now" list (home page) ---------- */
+
+.now-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.now-list li {
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: .96rem;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.now-list li:last-child {
+  border-bottom: none;
+}
+
+.now-tag {
+  font-size: .76rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.now-list a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease;
+}
+
+.now-list a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- page header (Research / Career) ---------- */
+
+.page-header {
+  padding-top: 3rem;
+  padding-bottom: 0;
+}
+
+.page-header h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -.012em;
+  margin: 0 0 .35rem;
+  line-height: 1.15;
+}
+
+.page-header .lede {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin: 0;
+  max-width: 38rem;
+}
+
+/* ---------- timeline (Career page) ---------- */
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline > li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1.4rem;
+  padding: .9rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+
+.timeline > li:last-child {
+  border-bottom: none;
+}
+
+.t-date {
+  font-size: .85rem;
+  color: var(--text-muted);
+  letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.t-body h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 .2rem;
+  letter-spacing: -.005em;
+}
+
+.t-org {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin: 0 0 .35rem !important;
+}
+
+.t-body p:last-child {
+  margin: 0;
+}
+
+/* ---------- athletic results list ---------- */
+
+.sub-h {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 1.6rem 0 .55rem !important;
+}
+
+.result-list, .award-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-list li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1rem;
+  padding: .42rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: .96rem;
+  align-items: baseline;
+}
+
+.result-list li:last-child {
+  border-bottom: none;
+}
+
+.r-year {
+  font-size: .85rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.award-list li {
+  padding: .35rem 0;
+  font-size: .96rem;
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.award-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .85em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+/* ---------- role (career page) ---------- */
+
+.role h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 .25rem;
+  letter-spacing: -.005em;
+}
+
 /* ---------- contact list ---------- */
 
 .contact-list {
@@ -384,6 +560,19 @@ main { padding-bottom: 3rem; }
     gap: .8rem;
     font-size: .92rem;
   }
+
+  .now-list li {
+    grid-template-columns: 70px 1fr;
+    gap: .7rem;
+  }
+
+  .timeline > li,
+  .result-list li {
+    grid-template-columns: 90px 1fr;
+    gap: .9rem;
+  }
+
+  .page-header h1 { font-size: 1.6rem; }
 
   .footer-row {
     flex-direction: column;

@@ -16,10 +16,10 @@
   <div class="container header-row">
     <a href="/" class="site-name">Simen Guttormsen</a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#publications">Publications</a>
-      <a href="#apps">Apps</a>
-      <a href="#contact">Contact</a>
+      <a href="/" class="active">Home</a>
+      <a href="research.html">Research</a>
+      <a href="career.html">Career</a>
+      <a href="mailto:simen.guttormsen@nmbu.no">Contact</a>
     </nav>
   </div>
 </header>
@@ -41,68 +41,18 @@
         <li><a href="https://scholar.google.com/" rel="noopener">Google Scholar</a></li>
         <li><a href="cv/Simen_Guttormsen_CV.pdf">CV</a></li>
       </ul>
-      <p class="bio">I work on implied-volatility surfaces, market microstructure, and how investors learn about event risk. Previously at Princeton (ORFE, 2023) and Duke (Economics &amp; Computation, 2025). I also compete on the Norwegian Olympic track and field team.</p>
+      <p class="bio">I work on implied-volatility surfaces, market microstructure, and how investors learn about event risk. Previously at Princeton (Operations Research &amp; Financial Engineering, 2023) and Duke (Economics &amp; Computation, 2025). Outside research I compete in the pole vault for Norway: 15th at the Paris 2024 Olympics, and finalist at the 2026 World Indoor Championships.</p>
     </div>
   </div>
 </section>
 
-<section id="about" class="container content-section">
-  <h2>About</h2>
-  <p>I am a PhD candidate in Finance at the Norwegian University of Life Sciences, working on derivatives, market microstructure, and investor learning. My current research asks what implied-volatility surfaces reveal about how markets price and process event risk &mdash; earnings announcements, FOMC meetings, and the like &mdash; and uses Bayesian-filtering methods to give the empirical patterns a structural foundation.</p>
-  <p>Outside research I compete in the pole vault for Norway. 15th at the Paris 2024 Olympics, finalist at the 2026 World Indoor Championships, Norwegian National Champion in 2021 and 2024, NCAA Division I Indoor Champion in 2025, and four-time NCAA All-American.</p>
-</section>
-
-<section id="publications" class="container content-section">
-  <h2>Selected publications</h2>
-
-  <article class="paper">
-    <h3>W-shaped implied volatility and investor learning about event risk</h3>
-    <p class="paper-meta">Sole author &middot; Under review at <em>Quantitative Finance</em>, 2026</p>
-    <p class="paper-abstract">Implied-volatility curves can occasionally exhibit a W-shape &mdash; a local maximum near at-the-money rather than the standard U-shaped smile. This paper provides a structural explanation grounded in Bayesian learning about hidden regimes. The main theorem gives a necessary condition on beliefs for W-shapes to emerge, and intensity peaks at maximum uncertainty. Empirical tests on U.S.&nbsp;equity options for 247 S&amp;P&nbsp;500 firms (2017&ndash;2025) confirm the predictions: W-shapes appear roughly six times more often when options span an earnings announcement, scale with earnings-reaction strength, and notably do not appear around FOMC announcements.</p>
-    <p class="paper-links">
-      <a href="papers/wshape-iv.pdf">PDF</a>
-      <span class="sep">&middot;</span>
-      <a href="https://www.ssrn.com/" rel="noopener">SSRN</a>
-    </p>
-  </article>
-
-  <article class="paper">
-    <h3>Cross-firm implied volatility spillovers at earnings announcements</h3>
-    <p class="paper-meta">Sole author &middot; Under review at <em>Journal of Financial Markets</em>, 2025</p>
-    <p class="paper-abstract">When a firm announces earnings, the implied volatility of industry-peer firms moves with the announcer&rsquo;s implied volatility. Using U.S.&nbsp;equity option data (2010&ndash;2024) and GICS peer groupings, spillovers are statistically significant even with date fixed effects. Controlling for industry-date averages, the spillover operates at the industry level rather than through firm-specific signals. Two tests suggest the spillover carries information about future uncertainty: it persists into the peer&rsquo;s own subsequent earnings announcement &mdash; particularly when the peer reports shortly after &mdash; and it does not dissipate across the earnings season.</p>
-    <p class="paper-links">
-      <a href="papers/cross-firm-iv-spillover.pdf">PDF</a>
-      <span class="sep">&middot;</span>
-      <a href="https://www.ssrn.com/" rel="noopener">SSRN</a>
-    </p>
-  </article>
-
-  <article class="paper">
-    <h3>Crisis-type heterogeneity in sector volatility spillovers</h3>
-    <p class="paper-meta">With co-author &middot; Under review at <em>International Journal of Finance &amp; Economics</em>, 2025</p>
-    <p class="paper-abstract">A quantile-VAR connectedness framework on sector-ETF implied volatility from 2018&ndash;2024 documents that spillover behavior differs systematically across crisis regimes. COVID, inflation, and banking-stress episodes generate distinct connectedness patterns at different points of the conditional distribution. We introduce a regime-purity metric to quantify window contamination, panel-regression interactions to test heterogeneity formally, and bootstrap inference for connectedness measures.</p>
-    <p class="paper-links">
-      <a href="papers/crisis-type-spillover.pdf">PDF</a>
-      <span class="sep">&middot;</span>
-      <a href="https://www.ssrn.com/" rel="noopener">SSRN</a>
-    </p>
-  </article>
-</section>
-
-<section id="apps" class="container content-section">
-  <h2>Apps</h2>
-  <article class="project">
-    <h3>VAULT</h3>
-    <p class="paper-meta">iOS app for pole-vault athletes and coaches &middot; 1,000+ downloads &middot; <a href="https://stavhopp.no/vault/" rel="noopener">stavhopp.no/vault</a></p>
-  </article>
-</section>
-
-<section id="contact" class="container content-section">
-  <h2>Contact</h2>
-  <ul class="contact-list">
-    <li><span class="contact-label">Email</span><a href="mailto:simen.guttormsen@nmbu.no">simen.guttormsen@nmbu.no</a></li>
-    <li><span class="contact-label">LinkedIn</span><a href="https://linkedin.com/in/simen-guttormsen" rel="noopener">linkedin.com/in/simen-guttormsen</a></li>
-    <li><span class="contact-label">GitHub</span><a href="https://github.com/simengut" rel="noopener">github.com/simengut</a></li>
+<section class="container content-section">
+  <h2>Currently</h2>
+  <ul class="now-list">
+    <li><span class="now-tag">Research</span> Three papers under review &mdash; <em>Quantitative Finance</em>, <em>Journal of Financial Markets</em>, and <em>International Journal of Finance &amp; Economics</em>. <a href="research.html">See research &rarr;</a></li>
+    <li><span class="now-tag">Teaching</span> Advising three Master&rsquo;s students at NMBU on quantitative-finance theses.</li>
+    <li><span class="now-tag">Sport</span> Training toward the 2026 outdoor season.</li>
+    <li><span class="now-tag">Building</span> <a href="https://stavhopp.no/vault/" rel="noopener">VAULT</a> &mdash; an iOS training app for pole-vault athletes; 1,000+ downloads.</li>
   </ul>
 </section>
 
