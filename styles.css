@@ -1,0 +1,392 @@
+/* ----------------------------------------------------------------------------
+   Simen Guttormsen — personal site
+   Modern academic, sans-serif throughout, single column.
+   Inspiration: thomasgultzow.com, fawadnajam.com.
+---------------------------------------------------------------------------- */
+
+:root {
+  --bg:           #ffffff;
+  --bg-soft:      #f6f6f4;
+  --text:         #1a1a1a;
+  --text-muted:   #6b6b73;
+  --rule:         #e6e6e2;
+  --accent:       #1f4d7a;       /* muted navy, modest contrast */
+  --accent-hover: #2c6098;
+
+  --sans:  -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --content-width: 720px;
+  --wide-width:    920px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--text);
+  font-size: 16.5px;
+  line-height: 1.6;
+  font-feature-settings: 'kern', 'liga', 'calt';
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+/* ---------- layout ---------- */
+
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+main { padding-bottom: 3rem; }
+
+/* ---------- header ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: saturate(150%) blur(6px);
+  -webkit-backdrop-filter: saturate(150%) blur(6px);
+  background-color: rgba(255,255,255,.92);
+}
+
+.header-row {
+  max-width: var(--wide-width);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: .6rem 1.5rem;
+}
+
+.site-name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.4rem;
+  font-size: .92rem;
+}
+
+.site-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color .15s ease;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding-top: 3.2rem;
+  padding-bottom: 2.4rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2.4rem;
+  align-items: start;
+}
+
+.avatar {
+  margin: 0;
+}
+
+.avatar img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.hero-text h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.012em;
+  margin: .1rem 0 .5rem;
+}
+
+.role {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin: 0 0 1rem;
+}
+
+.hero-links {
+  list-style: none;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 0;
+  font-size: .92rem;
+}
+
+.hero-links li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-links li:not(:last-child)::after {
+  content: '·';
+  color: var(--rule);
+  margin: 0 .65rem;
+}
+
+.hero-links a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.hero-links a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+.bio {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--text);
+}
+
+/* ---------- content sections ---------- */
+
+.content-section {
+  padding-top: 2.4rem;
+}
+
+.content-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  color: var(--text);
+  margin: 0 0 1.2rem;
+  padding-bottom: .55rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.content-section p {
+  margin: 0 0 .9rem;
+  max-width: 40rem;
+}
+
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- papers / projects ---------- */
+
+.paper, .project {
+  padding: 0 0 1.6rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.paper:last-of-type,
+.project:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.paper h3, .project h3 {
+  font-size: 1.06rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 .25rem;
+  color: var(--text);
+  letter-spacing: -.005em;
+}
+
+.paper-meta {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin: 0 0 .65rem !important;
+}
+
+.paper-meta em {
+  font-style: italic;
+  color: var(--text);
+}
+
+.paper-meta a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.paper-meta a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.paper-abstract {
+  margin: 0 0 .75rem !important;
+  color: var(--text);
+  font-size: .96rem;
+  line-height: 1.58;
+  max-width: 40rem;
+}
+
+.paper-links {
+  font-size: .9rem;
+  margin: 0 !important;
+}
+
+.paper-links a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease;
+}
+
+.paper-links a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.paper-links .sep {
+  color: var(--rule);
+  margin: 0 .25rem;
+}
+
+/* ---------- contact list ---------- */
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: .96rem;
+}
+
+.contact-list li:last-child {
+  border-bottom: none;
+}
+
+.contact-label {
+  color: var(--text-muted);
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.contact-list a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.contact-list a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.2rem 0;
+  background: var(--bg);
+  margin-top: 2rem;
+}
+
+.footer-row {
+  max-width: var(--wide-width);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: .85rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: .4rem 1.2rem;
+}
+
+.footer-row p { margin: 0; }
+
+/* ---------- utilities ---------- */
+
+.muted   { color: var(--text-muted); }
+.small   { font-size: .85rem; }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+
+  .hero {
+    padding-top: 2.2rem;
+    padding-bottom: 1.8rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    text-align: left;
+  }
+
+  .avatar img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero-text h1 { font-size: 1.85rem; }
+
+  .header-row {
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+  }
+
+  .site-nav {
+    gap: 1.1rem;
+    font-size: .9rem;
+  }
+
+  .contact-list li {
+    grid-template-columns: 80px 1fr;
+    gap: .8rem;
+    font-size: .92rem;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
