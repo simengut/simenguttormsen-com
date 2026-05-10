@@ -389,6 +389,557 @@ main { padding-bottom: 3rem; }
   margin-bottom: 0;
 }
 
+/* ---------- blog post list (Blog index page) ---------- */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.post-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.75rem;
+  align-items: start;
+  padding: 1.5rem 1.6rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.post-card:hover {
+  border-color: #d6d1bf;
+  box-shadow: 0 6px 20px -12px rgba(24, 24, 22, .18);
+}
+
+/* Make the whole card clickable, but keep nested links keyboard-focusable */
+.post-card-link {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.post-card-body {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  min-width: 0;
+}
+
+.post-card-body a,
+.post-card-body .post-readmore {
+  pointer-events: auto;
+}
+
+.post-card h2 {
+  font-size: 1.22rem;
+  font-weight: 600;
+  margin: .25rem 0 .45rem;
+  letter-spacing: -.014em;
+  border: none;
+  padding: 0;
+  text-transform: none;
+  color: var(--text);
+  line-height: 1.32;
+}
+
+.post-card h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-card:hover h2 a {
+  color: var(--accent);
+}
+
+.post-blurb {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 40rem;
+  line-height: 1.55;
+}
+
+.post-meta {
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.post-meta-sep {
+  margin: 0 .55em;
+  color: var(--rule);
+}
+
+.post-status {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.post-tags {
+  list-style: none;
+  padding: 0;
+  margin: .85rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.post-tags li {
+  font-size: .72rem;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  letter-spacing: .02em;
+  padding: .18rem .5rem;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+
+.post-readmore {
+  display: inline-block;
+  margin-top: .9rem;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: .005em;
+}
+
+.post-card:hover .post-readmore {
+  color: var(--accent-hover);
+}
+
+.post-card-thumbs {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-self: center;
+  width: 200px;
+}
+
+.post-thumb {
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: #fff;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.post-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform var(--transition);
+}
+
+.post-card:hover .post-thumb img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 720px) {
+  .post-card {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    padding: 1.25rem 1.25rem;
+  }
+
+  .post-card-thumbs {
+    width: 100%;
+    flex-direction: row;
+    gap: .5rem;
+  }
+
+  .post-thumb {
+    flex: 1;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- single blog post (long-form prose) ---------- */
+
+.post {
+  padding-top: 2.6rem;
+  padding-bottom: 2rem;
+}
+
+.post-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.post-header h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -.022em;
+  line-height: 1.15;
+  margin: .5rem 0 0;
+  max-width: 32rem;
+}
+
+.prose {
+  max-width: 38rem;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.prose p {
+  margin: 0 0 1.1rem;
+}
+
+.prose h2 {
+  font-size: 1.32rem;
+  font-weight: 600;
+  letter-spacing: -.014em;
+  margin: 2.2rem 0 .8rem;
+  padding: 0;
+  border: none;
+  text-transform: none;
+  color: var(--text);
+}
+
+.prose h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.6rem 0 .5rem;
+  letter-spacing: -.01em;
+}
+
+.prose ol,
+.prose ul {
+  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
+}
+
+.prose li {
+  margin: .35rem 0;
+}
+
+.prose strong {
+  font-weight: 650;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color var(--transition);
+}
+
+.prose a:hover {
+  color: var(--accent-hover);
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.4rem 0;
+}
+
+.prose blockquote {
+  margin: 1.2rem 0;
+  padding: .4rem 0 .4rem 1.1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.prose code {
+  font-family: var(--mono);
+  font-size: .92em;
+  background: var(--bg-soft);
+  padding: .1em .35em;
+  border-radius: 4px;
+}
+
+.prose pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: .9rem 1rem;
+  overflow-x: auto;
+  font-size: .9em;
+  line-height: 1.55;
+  margin: 0 0 1.1rem;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Figures: Markdown image immediately preceded by alt-as-caption renders
+   as an oversized image with an italicized caption below. */
+.prose p > img {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  margin: 1.6rem auto .35rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* If a paragraph is *only* an image, treat the alt text rendering as a caption.
+   Markdown doesn't have native captions, so we use a sibling .caption pattern
+   if you choose to write them as italic text on a separate paragraph. */
+.prose p:has(> img:only-child) {
+  text-align: center;
+  margin: 1.4rem 0 1.8rem;
+}
+
+.prose p:has(> img:only-child) + p em:only-child {
+  display: block;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: -.4rem auto 1.6rem;
+  line-height: 1.5;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 1.4rem 0;
+  font-size: .94rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: .55rem .8rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--bg-soft);
+  font-weight: 600;
+  letter-spacing: -.005em;
+  border-bottom: 2px solid var(--rule);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+.prose td:nth-child(2),
+.prose th:nth-child(2) {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* KaTeX: tighten display equations and make them scrollable on narrow screens
+   without spilling outside the column. */
+.prose .katex-display {
+  margin: 1.4rem 0;
+  padding: .2rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.prose .katex {
+  font-size: 1.04em;
+}
+
+.prose .katex-display > .katex {
+  font-size: 1.08em;
+}
+
+.prose p .katex {
+  line-height: 1;
+}
+
+/* Collapsible math aside — "Derivation" callout box.
+   Framed panel with a left rule and a labeled header; closed by default. */
+.prose details.math-aside {
+  position: relative;
+  margin: 2rem 0;
+  padding: 0;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+
+.prose details.math-aside > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: .7rem 1rem .7rem 1.05rem;
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--accent);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  transition: background var(--transition);
+}
+
+.prose details.math-aside > summary::-webkit-details-marker {
+  display: none;
+}
+
+.prose details.math-aside > summary::before {
+  content: "Derivation";
+  flex: 1;
+}
+
+.prose details.math-aside > summary > * {
+  display: none;
+}
+
+.prose details.math-aside > summary::after {
+  content: "+";
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 1.1em;
+  color: var(--text-muted);
+  transition: transform var(--transition);
+}
+
+.prose details.math-aside[open] > summary::after {
+  content: "−";
+}
+
+.prose details.math-aside > summary:hover {
+  background: rgba(26, 56, 102, .04);
+}
+
+.prose details.math-aside[open] > summary {
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose details.math-aside[open] {
+  padding-bottom: .25rem;
+}
+
+.prose details.math-aside > summary + * {
+  margin-top: 1rem;
+  padding: 0 1.25rem;
+}
+
+.prose details.math-aside > *:not(summary) {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.prose details.math-aside > *:last-child {
+  margin-bottom: .5rem;
+}
+
+.prose details.math-aside .katex-display {
+  margin: 1rem 0;
+}
+
+/* TL;DR callout — sits at the top of a post, more prominent than math-aside.
+   Soft tinted background, accent left bar, closed by default. */
+.prose details.tldr {
+  margin: 0 0 2rem;
+  padding: 0;
+  background: var(--bg-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+
+.prose details.tldr > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: .75rem 1rem;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  transition: color var(--transition);
+}
+
+.prose details.tldr > summary::-webkit-details-marker {
+  display: none;
+}
+
+.prose details.tldr > summary::after {
+  content: "+";
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-muted);
+}
+
+.prose details.tldr[open] > summary::after {
+  content: "−";
+}
+
+.prose details.tldr > summary:hover {
+  color: var(--accent-hover);
+}
+
+.prose details.tldr[open] > summary {
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose details.tldr ul {
+  margin: .9rem 0;
+  padding: 0 1.2rem 0 2.2rem;
+}
+
+.prose details.tldr li {
+  margin: .5rem 0;
+  font-size: .96rem;
+  line-height: 1.55;
+}
+
 /* ---------- "now" list (home page) ---------- */
 
 .now-list {

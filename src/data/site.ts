@@ -13,12 +13,21 @@ export const site = {
   },
 } as const;
 
-export type SitePage = 'home' | 'research' | 'projects' | 'career';
+export type SitePage = 'home' | 'research' | 'projects' | 'career' | 'blog';
 
-export const navItems: { href: string; label: string; page: SitePage | 'contact' }[] = [
+export interface NavItem {
+  href: string;
+  label: string;
+  page: SitePage | 'contact';
+  /** When true, this nav item is only shown in `npm run dev` (not in production builds). */
+  devOnly?: boolean;
+}
+
+export const navItems: NavItem[] = [
   { href: '/', label: 'Home', page: 'home' },
   { href: '/research', label: 'Research', page: 'research' },
   { href: '/projects', label: 'Projects', page: 'projects' },
   { href: '/career', label: 'Career', page: 'career' },
+  { href: '/blog', label: 'Blog', page: 'blog' },
   { href: 'mailto:simen.guttormsen@nmbu.no', label: 'Contact', page: 'contact' },
 ];

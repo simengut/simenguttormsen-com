@@ -1,0 +1,39 @@
+---
+import Site from './Site.astro';
+import 'katex/dist/katex.min.css';
+
+interface Frontmatter {
+  title: string;
+  description?: string;
+  date: string;
+  paper?: string;
+  status?: string;
+}
+
+const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+<Site title={frontmatter.title} page="blog" description={frontmatter.description}>
+  <article class="post container">
+    <header class="post-header">
+      <p class="post-meta">
+        <time datetime={frontmatter.date}>{formattedDate}</time>
+        {frontmatter.status && (
+          <>
+            <span class="post-meta-sep">·</span>
+            <span class="post-status">{frontmatter.status}</span>
+          </>
+        )}
+      </p>
+      <h1>{frontmatter.title}</h1>
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Site>

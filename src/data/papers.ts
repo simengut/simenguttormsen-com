@@ -40,11 +40,11 @@ export const papers: Paper[] = [
     pdf: '/papers/divestment-volatility.pdf',
   },
   {
-    title: 'Crisis-type heterogeneity in sector volatility spillovers',
-    authorship: 'With co-author',
-    status: 'Under review at <em>International Journal of Finance &amp; Economics</em>, 2025',
+    title: 'Crisis-origin dependence in sector volatility spillovers: Evidence from U.S. equity markets, 2015&ndash;2025',
+    authorship: 'With Muhammad Yahya',
+    status: 'Under review at <em>International Journal of Finance &amp; Economics</em>, 2026',
     abstract:
-      'A quantile-VAR connectedness framework on sector-ETF implied volatility from 2018&ndash;2024 documents that spillover behavior differs systematically across crisis regimes. COVID, inflation, and banking-stress episodes generate distinct connectedness patterns at different points of the conditional distribution. We introduce a regime-purity metric to quantify window contamination, panel-regression interactions to test heterogeneity formally, and bootstrap inference for connectedness measures.',
+      'This paper examines whether the origin of a financial crisis determines how volatility shocks transmit through equity sectors. We apply a quantile vector autoregression (QVAR) framework to daily changes in option-implied volatility for nine U.S. sector ETFs from 2015 to 2025. The sample covers six crises with fundamentally different origins: the 2015&ndash;2016 oil/China shock, the 2018 Volmageddon tightening, the COVID-19 pandemic, the 2022&ndash;2023 high-inflation monetary tightening, the 2023 SVB banking crisis, and the 2025 tariff crisis. Panel regressions reject equal transmission patterns across all nine quantiles, and all six crises yield unique top-3 transmitter compositions. Monetary tightening elevates industrials and cyclical sectors; COVID-19 features the distinctive emergence of energy-sector transmission; the tariff crisis produces the unprecedented emergence of financials as the leading transmitter; and the oil/China shock features consumer discretionary and technology leadership&mdash;with no sector appearing consistently in the top-3 across all crises. We also document a consistent cyclical-defensive divide, where cyclical sectors transmit&mdash;and defensive sectors absorb&mdash;volatility. The divide holds across all regimes, with utilities qualifying as the only pure safe haven (a net receiver in every regime). Our findings demonstrate that crisis-origin shapes the volatility transmission network, with implications for scenario-based stress testing, portfolio construction, and crisis-specific risk management.',
     pdf: '/papers/crisis-type-spillover.pdf',
   },
 ];

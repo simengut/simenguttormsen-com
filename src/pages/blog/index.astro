@@ -1,0 +1,101 @@
+---
+import Site from '../../layouts/Site.astro';
+
+interface Thumb {
+  src: string;
+  alt?: string;
+}
+
+interface PostEntry {
+  url: string;
+  title: string;
+  date: string;
+  blurb: string;
+  status?: string;
+  readingTime?: string;
+  tags?: string[];
+  thumbs?: Thumb[];
+}
+
+// Glob the blog posts. Astro evaluates this at build time and gives us
+// frontmatter + URLs. New posts in src/pages/blog/*.md auto-appear here.
+const rawPosts = await Astro.glob<{
+  title: string;
+  date: string;
+  description?: string;
+  status?: string;
+  readingTime?: string;
+  tags?: string[];
+  thumbs?: Thumb[];
+}>('./*.md');
+
+const posts: PostEntry[] = rawPosts
+  .map((p) => ({
+    url: p.url ?? '#',
+    title: p.frontmatter.title,
+    date: p.frontmatter.date,
+    blurb: p.frontmatter.description ?? '',
+    status: p.frontmatter.status,
+    readingTime: p.frontmatter.readingTime,
+    tags: p.frontmatter.tags,
+    thumbs: p.frontmatter.thumbs,
+  }))
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+<Site title="Blog" page="blog" description="Notes and writing by Simen Guttormsen.">
+
+<section class="page-header container">
+  <h1>Blog</h1>
+</section>
+
+<section class="container content-section">
+  {posts.length === 0 ? (
+    <p class="muted">No posts yet.</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-card">
+          <a class="post-card-link" href={post.url} aria-label={post.title}></a>
+          <div class="post-card-body">
+            <p class="post-meta">
+              <time datetime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+              {post.readingTime && (
+                <>
+                  <span class="post-meta-sep">·</span>
+                  <span>{post.readingTime}</span>
+                </>
+              )}
+              {post.status && (
+                <>
+                  <span class="post-meta-sep">·</span>
+                  <span class="post-status">{post.status}</span>
+                </>
+              )}
+            </p>
+            <h2><a href={post.url}>{post.title}</a></h2>
+            {post.blurb && <p class="post-blurb">{post.blurb}</p>}
+            {post.tags && post.tags.length > 0 && (
+              <ul class="post-tags" aria-label="Tags">
+                {post.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            )}
+            <span class="post-readmore">Read post &rarr;</span>
+          </div>
+          {post.thumbs && post.thumbs.length > 0 && (
+            <div class="post-card-thumbs" aria-hidden="true">
+              {post.thumbs.slice(0, 2).map((thumb) => (
+                <figure class="post-thumb">
+                  <img src={thumb.src} alt={thumb.alt ?? ''} loading="lazy" />
+                </figure>
+              ))}
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</section>
+
+</Site>
